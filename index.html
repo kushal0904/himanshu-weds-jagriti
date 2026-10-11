@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Himanshu & Jagriti | Royal Wedding Invitation | The Nagar Family</title>
+
+  <!-- Prevent browser from restoring old scroll position on refresh -->
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400;1,600&family=Marcellus&family=Rozha+One&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons & Confetti -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: {
+              950: '#021510',
+              900: '#031f17',
+              850: '#062d22',
+              800: '#0a3d2e',
+              700: '#11523f',
+            },
+            gold: {
+              100: '#fff9e5',
+              200: '#faeec0',
+              300: '#f6df8d',
+              400: '#eec956',
+              500: '#d4af37',
+              600: '#b8860b',
+              700: '#8c6207',
+            },
+            champagne: '#faf5ea',
+            cream: '#fdfbf7',
+          },
+          fontFamily: {
+            cinzel: ['"Cinzel"', 'serif'],
+            decorative: ['"Cinzel Decorative"', 'serif'],
+            marcellus: ['"Marcellus"', 'serif'],
+            cormorant: ['"Cormorant Garamond"', 'serif'],
+            devanagari: ['"Rozha One"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #021510;
+      background-image: 
+        radial-gradient(circle at 50% 0%, #083b2d 0%, #021510 75%),
+        radial-gradient(circle at 20px 20px, rgba(212, 175, 55, 0.08) 2px, transparent 0);
+      background-size: 100% 100%, 48px 48px;
+      color: #faf5ea;
+      font-family: 'Marcellus', serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .gold-foil-text {
+      background: linear-gradient(135deg, #fff3c4 0%, #f1cb5b 35%, #d4af37 60%, #996515 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ornate-card {
+      background: linear-gradient(145deg, rgba(4, 33, 25, 0.94), rgba(2, 21, 16, 0.97));
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 0 25px rgba(212, 175, 55, 0.08);
+      position: relative;
+    }
+
+    .corner-ornament {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-color: #d4af37;
+      pointer-events: none;
+    }
+    .c-tl { top: 8px; left: 8px; border-top: 2px solid; border-left: 2px solid; }
+    .c-tr { top: 8px; right: 8px; border-top: 2px solid; border-right: 2px solid; }
+    .c-bl { bottom: 8px; left: 8px; border-bottom: 2px solid; border-left: 2px solid; }
+    .c-br { bottom: 8px; right: 8px; border-bottom: 2px solid; border-right: 2px solid; }
+
+    /* Grand Palace Doors Opening */
+    .door-left, .door-right {
+      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .doors-open .door-left {
+      transform: translateX(-100%);
+    }
+    .doors-open .door-right {
+      transform: translateX(100%);
+    }
+
+    @keyframes rotateVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+      animation: rotateVinyl 4s linear infinite;
+    }
+
+    @keyframes softPulse {
+      0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.7); }
+    }
+    .gold-glow {
+      animation: softPulse 3.5s infinite ease-in-out;
+    }
+
+    .petal {
+      position: fixed;
+      pointer-events: none;
+      z-index: 25;
+      top: -5%;
+      user-select: none;
+      animation: petalFall linear infinite;
+    }
+    @keyframes petalFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.85; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Carousel Smooth Transitions */
+    .carousel-slide {
+      transition: transform 0.45s ease-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen relative selection:bg-gold-500 selection:text-emerald-950">
+
+  <div id="petalLayer" class="fixed inset-0 pointer-events-none z-20 overflow-hidden"></div>
+
+  <!-- Audio Player -->
+  <audio id="weddingShehnaiAudio" loop preload="auto">
+    <source src="wedding-song.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Floating Audio Widget -->
+  <div id="musicController" class="fixed bottom-6 right-5 z-40 flex items-center gap-3 bg-emerald-900/90 backdrop-blur-md border border-gold-500/70 rounded-full py-2 px-4 shadow-2xl cursor-pointer hover:bg-emerald-850 hover:border-gold-300 transition duration-300">
+    <div id="discGraphic" class="w-9 h-9 rounded-full bg-gradient-to-tr from-emerald-950 via-gold-500 to-emerald-900 flex items-center justify-center text-xs text-emerald-950 shadow-md">
+      <i class="fas fa-compact-disc text-base text-gold-200"></i>
+    </div>
+    <div class="text-left hidden sm:block">
+      <p id="musicStatusText" class="text-[11px] font-cinzel font-bold text-gold-300 tracking-wider uppercase leading-none">Wedding Melodies</p>
+    </div>
+    <i id="soundIcon" class="fas fa-volume-up text-gold-400 text-sm ml-1"></i>
+  </div>
+
+  <!-- ROYAL PALACE DOORS ENTRANCE GATEWAY -->
+  <div id="entranceModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
+    <div class="door-left absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950 border-r-2 border-gold-500/60 shadow-2xl z-20 flex items-center justify-end pr-4">
+      <div class="w-24 h-48 border border-gold-500/30 rounded-l-full opacity-30"></div>
+    </div>
+    <div class="door-right absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-emerald-950 via-emerald-900 to-emerald-950 border-l-2 border-gold-500/60 shadow-2xl z-20 flex items-center justify-start pl-4">
+      <div class="w-24 h-48 border border-gold-500/30 rounded-r-full opacity-30"></div>
+    </div>
+
+    <!-- Entrance Plaque -->
+    <div id="doorPlaque" class="relative z-30 text-center max-w-lg w-full p-8 sm:p-10 ornate-card rounded-3xl border-2 border-gold-500/80 shadow-2xl mx-4 transition-all duration-700">
+      <div class="corner-ornament c-tl"></div>
+      <div class="corner-ornament c-tr"></div>
+      <div class="corner-ornament c-bl"></div>
+      <div class="corner-ornament c-br"></div>
+
+      <div class="text-gold-400 text-3xl mb-2 tracking-widest">卐 &nbsp; ॐ &nbsp; 卐</div>
+      <p class="font-devanagari text-2xl text-gold-400 mb-1">|| श्री गणेशाय नमः ||</p>
+      <p class="text-xs font-cormorant italic text-gold-200/90 mb-4 leading-relaxed max-w-sm mx-auto">
+        वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>
+        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+      </p>
+
+      <div class="w-20 h-20 mx-auto my-4 rounded-full border-2 border-gold-400 bg-emerald-900 flex flex-col items-center justify-center shadow-lg gold-glow">
+        <span class="font-decorative text-2xl font-bold text-gold-300">H &bull; J</span>
+      </div>
+
+      <p class="text-[11px] font-cinzel tracking-widest text-gold-400 uppercase">The Nagar Family Cordially Invites You</p>
+      <h1 class="font-decorative text-2xl sm:text-3xl gold-foil-text my-2 leading-tight">
+        Himanshu &amp; Jagriti
+      </h1>
+      <p class="text-xs text-champagne/80 font-marcellus mb-6">
+        Step into our royal wedding celebrations in Ahmedabad
+      </p>
+
+      <button id="enterCelebrationBtn" class="px-8 py-3.5 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-600 text-emerald-950 font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full shadow-lg hover:shadow-gold-500/50 hover:scale-105 active:scale-95 transition-all duration-300 inline-flex items-center gap-3">
+        <span>Open Royal Invitation</span>
+        <i class="fas fa-envelope-open-text text-xs text-emerald-950"></i>
+      </button>
+
+      <p class="text-[10px] text-champagne/60 mt-4 italic font-marcellus">
+        ♪ Tap to unseal the gates and play festive music
+      </p>
+    </div>
+  </div>
+
+  <!-- MAIN INVITATION CONTENT -->
+  <main id="mainPage" class="opacity-0 transition-opacity duration-1000 max-w-4xl mx-auto px-4 py-8 pb-28">
+
+    <!-- Hero Header -->
+    <header class="text-center py-10 relative">
+      <div class="inline-block p-1.5 rounded-full border border-gold-500/40 mb-3">
+        <div class="w-20 h-20 rounded-full bg-emerald-900 border-2 border-gold-400 flex flex-col items-center justify-center shadow-lg">
+          <span class="font-decorative text-2xl font-bold text-gold-300">H &amp; J</span>
+          <span class="text-[8px] font-cinzel text-gold-400 tracking-widest">NAGAR</span>
+        </div>
+      </div>
+
+      <p class="text-xs uppercase tracking-[0.35em] text-gold-400 font-cinzel mb-2">
+        Wedding Invitation &bull; Groom's Family
+      </p>
+      <h1 class="font-decorative text-4xl sm:text-6xl md:text-7xl gold-foil-text my-2 leading-tight">
+        Himanshu &amp; Jagriti
+      </h1>
+
+      <div class="flex items-center justify-center gap-4 my-3 text-gold-400/80">
+        <span class="h-px w-16 sm:w-28 bg-gradient-to-r from-transparent to-gold-400"></span>
+        <span class="font-devanagari text-gold-300 text-base">शुभ विवाह</span>
+        <span class="h-px w-16 sm:w-28 bg-gradient-to-l from-transparent to-gold-400"></span>
+      </div>
+
+      <p class="font-cinzel text-xs sm:text-sm tracking-widest text-champagne uppercase max-w-lg mx-auto">
+        14th &bull; 15th February 2027 &bull; Ahmedabad, Gujarat
+      </p>
+    </header>
+
+    <!-- Couple Presentation Section -->
+    <section class="my-10 text-center ornate-card p-6 sm:p-10 rounded-3xl">
+      <div class="corner-ornament c-tl"></div>
+      <div class="corner-ornament c-tr"></div>
+      <div class="corner-ornament c-bl"></div>
+      <div class="corner-ornament c-br"></div>
+
+      <p class="text-xs font-cinzel text-gold-400 uppercase tracking-widest mb-2">With The Grace Of God &amp; Ancestors</p>
+      <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-champagne mb-4">
+        The Nagar Family
+      </h2>
+      <p class="text-xs sm:text-sm text-champagne/85 font-marcellus leading-relaxed max-w-2xl mx-auto mb-8">
+        Warmly invites you to grace the auspicious wedding celebrations and bestow your heartfelt blessings upon our beloved son as he embarks on his sacred journey of holy matrimony with
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <!-- Groom Card -->
+        <div class="p-6 sm:p-8 bg-emerald-900/70 rounded-2xl border-2 border-gold-500/60 relative flex flex-col justify-between">
+          <span class="absolute top-0 right-0 bg-gold-500/20 text-gold-300 px-3 py-1 text-[10px] font-cinzel uppercase tracking-wider rounded-bl-xl border-l border-b border-gold-500/30">
+            Groom
+          </span>
+          <div>
+            <div class="w-14 h-14 mx-auto my-3 rounded-full border border-gold-400 bg-emerald-950 flex items-center justify-center text-gold-300 font-decorative text-xl shadow-md">
+              H
+            </div>
+            <p class="font-cinzel text-xs text-gold-400 uppercase tracking-widest mt-2">Our Beloved Son</p>
+            <h3 class="font-decorative text-2xl sm:text-3xl font-bold text-gold-300 mt-1">Himanshu Nagar</h3>
+            <div class="h-0.5 w-16 bg-gold-500/50 mx-auto my-3"></div>
+            <p class="text-sm text-champagne/95 font-marcellus leading-relaxed">
+              Son of<br>
+              <strong class="text-gold-200 font-cinzel text-base">Smt. Veena Nagar &amp; Shri Vikram Nagar</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- Bride Card -->
+        <div class="p-6 sm:p-8 bg-emerald-900/70 rounded-2xl border-2 border-gold-500/60 relative flex flex-col justify-between">
+          <span class="absolute top-0 right-0 bg-gold-500/20 text-gold-300 px-3 py-1 text-[10px] font-cinzel uppercase tracking-wider rounded-bl-xl border-l border-b border-gold-500/30">
+            Bride
+          </span>
+          <div>
+            <div class="w-14 h-14 mx-auto my-3 rounded-full border border-gold-400 bg-emerald-950 flex items-center justify-center text-gold-300 font-decorative text-xl shadow-md">
+              J
+            </div>
+            <p class="font-cinzel text-xs text-gold-400 uppercase tracking-widest mt-2">Welcoming With Open Arms</p>
+            <h3 class="font-decorative text-2xl sm:text-3xl font-bold text-gold-300 mt-1">Jagriti Nagar</h3>
+            <div class="h-0.5 w-16 bg-gold-500/50 mx-auto my-3"></div>
+            <p class="text-sm text-champagne/95 font-marcellus leading-relaxed">
+              Daughter of<br>
+              <strong class="text-gold-200 font-cinzel text-base">Smt. Sunita Nagar &amp; Shri Narayanlal Nagar</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE WAX SEAL / SCRATCH REVEAL CARD -->
+    <section class="my-14 text-center">
+      <div class="max-w-md mx-auto ornate-card p-6 sm:p-8 rounded-3xl border border-gold-500/60 relative">
+        <div class="corner-ornament c-tl"></div>
+        <div class="corner-ornament c-tr"></div>
+        <div class="corner-ornament c-bl"></div>
+        <div class="corner-ornament c-br"></div>
+
+        <h3 class="font-cinzel text-xl sm:text-2xl font-bold text-gold-300 tracking-wider mb-1">
+          <i class="fas fa-stamp text-gold-400 mr-2"></i> Reveal Wedding Muhurat
+        </h3>
+        <p class="text-xs text-champagne/75 font-marcellus mb-5">
+          Scratch or unseal the royal golden stamp with your finger or cursor!
+        </p>
+
+        <!-- Scratch Container -->
+        <div class="relative w-[280px] h-[175px] sm:w-[320px] sm:h-[185px] mx-auto rounded-2xl overflow-hidden shadow-2xl border-2 border-gold-500 select-none">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-950 via-emerald-900 to-black flex flex-col items-center justify-center p-4 text-center">
+            <span class="text-gold-400 text-xs font-cinzel tracking-widest uppercase mb-1">The Auspicious Wedding Day</span>
+            <span class="font-decorative text-3xl font-bold text-gold-200">15 &bull; 02 &bull; 2027</span>
+            <span class="text-xs text-champagne font-marcellus mt-1">Monday Morning Wedding</span>
+            <div class="mt-2.5 px-3 py-1 bg-gold-500/20 rounded-full border border-gold-400/40 text-[10px] text-gold-300 font-cinzel">
+              <i class="fas fa-map-marker-alt mr-1 text-gold-400"></i> Devashray Farm, Ahmedabad
+            </div>
+          </div>
+          <canvas id="scratchCanvas" width="320" height="185" class="absolute inset-0 w-full h-full z-10"></canvas>
+        </div>
+
+        <div id="scratchStatusMsg" class="mt-4 text-xs font-cinzel text-gold-400 flex items-center justify-center gap-2">
+          <i class="fas fa-hand-sparkles animate-pulse"></i>
+          <span>Scratch 35% of the seal to reveal the auspicious date!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR JOURNEY & STORY ROADMAP -->
+    <section class="my-14 text-center">
+      <div class="ornate-card p-6 sm:p-8 rounded-3xl border border-gold-500/50">
+        <p class="text-xs uppercase font-cinzel tracking-[0.25em] text-gold-400 mb-1">A Story of Destiny</p>
+        <h3 class="font-decorative text-2xl sm:text-3xl text-gold-200 mb-6">Our Journey Together</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+          <div class="p-4 bg-emerald-950/70 rounded-xl border border-gold-500/30">
+            <div class="text-gold-400 text-xs font-cinzel font-bold mb-1">CHAPTER 01</div>
+            <h4 class="font-cinzel text-sm font-bold text-champagne">The Blessed Meeting</h4>
+            <p class="text-xs text-champagne/70 font-cormorant italic mt-2">When two families united in hope, conversation turned to laughter, and the foundation of lifelong friendship was laid.</p>
+          </div>
+          <div class="p-4 bg-emerald-950/70 rounded-xl border border-gold-500/30">
+            <div class="text-gold-400 text-xs font-cinzel font-bold mb-1">CHAPTER 02</div>
+            <h4 class="font-cinzel text-sm font-bold text-champagne">Roka &amp; Commitment</h4>
+            <p class="text-xs text-champagne/70 font-cormorant italic mt-2">With elders showering blessings and sweet celebrations, two hearts chose each other forever.</p>
+          </div>
+          <div class="p-4 bg-emerald-950/70 rounded-xl border border-gold-500/30">
+            <div class="text-gold-400 text-xs font-cinzel font-bold mb-1">CHAPTER 03</div>
+            <h4 class="font-cinzel text-sm font-bold text-champagne">The Sacred Pheras</h4>
+            <p class="text-xs text-champagne/70 font-cormorant italic mt-2">February 2027 marks the dawn of their sacred vows in presence of dear family and cherished friends.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE COUNTDOWN TIMER -->
+    <section class="my-14 text-center">
+      <div class="ornate-card p-6 sm:p-8 rounded-3xl border border-gold-500/50">
+        <p class="text-xs uppercase font-cinzel tracking-[0.25em] text-gold-400 mb-1">Counting Down The Moments</p>
+        <h3 class="font-decorative text-2xl sm:text-3xl text-gold-200 mb-6">Until The Grand Wedding</h3>
+
+        <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mx-auto">
+          <div class="bg-emerald-950/80 p-3 sm:p-4 rounded-2xl border border-gold-500/40">
+            <span id="daysVal" class="block font-cinzel text-2xl sm:text-4xl font-bold text-gold-300">00</span>
+            <span class="text-[10px] sm:text-xs font-marcellus tracking-wider text-champagne/70 uppercase">Days</span>
+          </div>
+          <div class="bg-emerald-950/80 p-3 sm:p-4 rounded-2xl border border-gold-500/40">
+            <span id="hoursVal" class="block font-cinzel text-2xl sm:text-4xl font-bold text-gold-300">00</span>
+            <span class="text-[10px] sm:text-xs font-marcellus tracking-wider text-champagne/70 uppercase">Hours</span>
+          </div>
+          <div class="bg-emerald-950/80 p-3 sm:p-4 rounded-2xl border border-gold-500/40">
+            <span id="minsVal" class="block font-cinzel text-2xl sm:text-4xl font-bold text-gold-300">00</span>
+            <span class="text-[10px] sm:text-xs font-marcellus tracking-wider text-champagne/70 uppercase">Mins</span>
+          </div>
+          <div class="bg-emerald-950/80 p-3 sm:p-4 rounded-2xl border border-gold-500/40">
+            <span id="secsVal" class="block font-cinzel text-2xl sm:text-4xl font-bold text-gold-300">00</span>
+            <span class="text-[10px] sm:text-xs font-marcellus tracking-wider text-champagne/70 uppercase">Secs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOUCH-SWIPEABLE PHOTO CAROUSEL (4 Photos) -->
+    <section class="my-16 text-center">
+      <div class="ornate-card p-6 sm:p-10 rounded-3xl border border-gold-500/60">
+        <div class="corner-ornament c-tl"></div>
+        <div class="corner-ornament c-tr"></div>
+        <div class="corner-ornament c-bl"></div>
+        <div class="corner-ornament c-br"></div>
+
+        <p class="text-xs uppercase font-cinzel tracking-[0.25em] text-gold-400 mb-1">Moments of Togetherness</p>
+        <h3 class="font-decorative text-3xl sm:text-4xl text-gold-200 mb-2">Himanshu &amp; Jagriti</h3>
+        <p class="text-xs text-champagne/70 font-marcellus max-w-md mx-auto mb-6">
+          Swipe left or right to explore our moments together.
+        </p>
+
+        <!-- Carousel Frame -->
+        <div class="relative max-w-sm sm:max-w-md mx-auto">
+          <!-- Overflow Hidden Container -->
+          <div id="carouselWrapper" class="overflow-hidden rounded-2xl border-2 border-gold-500/60 shadow-2xl bg-emerald-950 cursor-grab select-none">
+            <div id="carouselTrack" class="flex carousel-slide">
+              <!-- Slide 1 -->
+              <div class="min-w-full aspect-[3/4] relative">
+                <img 
+                  src="couple-1.jpg" 
+                  alt="Himanshu & Jagriti" 
+                  class="w-full h-full object-cover object-center pointer-events-none"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="w-full h-full rounded-2xl bg-emerald-900/90 items-center justify-center flex-col text-gold-300/80 p-4 hidden">
+                  <i class="fas fa-heart text-4xl mb-3 text-gold-400"></i>
+                  <span class="font-cinzel text-sm tracking-wider uppercase">Cherished Memory &bull; Photo 1</span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 text-center">
+                  <p class="font-cinzel text-xs text-gold-300 font-bold tracking-widest uppercase">A Beautiful Beginning</p>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="min-w-full aspect-[3/4] relative">
+                <img 
+                  src="couple-2.jpg" 
+                  alt="Himanshu & Jagriti" 
+                  class="w-full h-full object-cover object-center pointer-events-none"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="w-full h-full rounded-2xl bg-emerald-900/90 items-center justify-center flex-col text-gold-300/80 p-4 hidden">
+                  <i class="fas fa-ring text-4xl mb-3 text-gold-400"></i>
+                  <span class="font-cinzel text-sm tracking-wider uppercase">Pure Happiness &bull; Photo 2</span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 text-center">
+                  <p class="font-cinzel text-xs text-gold-300 font-bold tracking-widest uppercase">Laughter &amp; Love</p>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="min-w-full aspect-[3/4] relative">
+                <img 
+                  src="couple-3.jpg" 
+                  alt="Himanshu & Jagriti" 
+                  class="w-full h-full object-cover object-center pointer-events-none"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="w-full h-full rounded-2xl bg-emerald-900/90 items-center justify-center flex-col text-gold-300/80 p-4 hidden">
+                  <i class="fas fa-sparkles text-4xl mb-3 text-gold-400"></i>
+                  <span class="font-cinzel text-sm tracking-wider uppercase">Magical Days &bull; Photo 3</span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 text-center">
+                  <p class="font-cinzel text-xs text-gold-300 font-bold tracking-widest uppercase">Two Hearts, One Soul</p>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="min-w-full aspect-[3/4] relative">
+                <img 
+                  src="couple-4.jpg" 
+                  alt="Himanshu & Jagriti" 
+                  class="w-full h-full object-cover object-center pointer-events-none"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="w-full h-full rounded-2xl bg-emerald-900/90 items-center justify-center flex-col text-gold-300/80 p-4 hidden">
+                  <i class="fas fa-infinity text-4xl mb-3 text-gold-400"></i>
+                  <span class="font-cinzel text-sm tracking-wider uppercase">Forever &amp; Always &bull; Photo 4</span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 text-center">
+                  <p class="font-cinzel text-xs text-gold-300 font-bold tracking-widest uppercase">Ready for Forever</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Controls: Prev & Next Buttons -->
+          <button id="carouselPrevBtn" aria-label="Previous photo" class="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-emerald-900/95 border border-gold-500 text-gold-300 flex items-center justify-center shadow-lg hover:bg-emerald-800 transition active:scale-90 z-10">
+            <i class="fas fa-chevron-left text-xs"></i>
+          </button>
+          <button id="carouselNextBtn" aria-label="Next photo" class="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-emerald-900/95 border border-gold-500 text-gold-300 flex items-center justify-center shadow-lg hover:bg-emerald-800 transition active:scale-90 z-10">
+            <i class="fas fa-chevron-right text-xs"></i>
+          </button>
+
+          <!-- Dot Indicators -->
+          <div class="flex items-center justify-center gap-2 mt-4">
+            <button class="dot-btn w-2.5 h-2.5 rounded-full transition-all bg-gold-400 scale-125" data-index="0" aria-label="Go to slide 1"></button>
+            <button class="dot-btn w-2.5 h-2.5 rounded-full transition-all bg-gold-500/40" data-index="1" aria-label="Go to slide 2"></button>
+            <button class="dot-btn w-2.5 h-2.5 rounded-full transition-all bg-gold-500/40" data-index="2" aria-label="Go to slide 3"></button>
+            <button class="dot-btn w-2.5 h-2.5 rounded-full transition-all bg-gold-500/40" data-index="3" aria-label="Go to slide 4"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 WEDDING CEREMONIES -->
+    <section class="my-16">
+      <div class="text-center mb-10">
+        <p class="text-xs uppercase font-cinzel tracking-widest text-gold-400">Celebration Timeline</p>
+        <h3 class="font-decorative text-3xl sm:text-4xl text-gold-200">Ceremonies &amp; Venues</h3>
+        <p class="text-xs text-champagne/70 font-marcellus max-w-md mx-auto mt-2">
+          Your graceful presence at each sacred ritual will shower eternal joy upon the groom and bride.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- 1. Ganesh Sthapana -->
+        <div class="ornate-card p-6 rounded-2xl border border-gold-500/40 hover:border-gold-300 transition-all">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="inline-block px-3 py-1 bg-gold-500/20 text-gold-400 rounded-full text-[10px] font-cinzel font-semibold tracking-wider">
+                14 FEB 2027 &bull; MORNING
+              </span>
+              <h4 class="font-cinzel text-xl font-bold text-gold-300 mt-2">1. Ganesh Sthapana</h4>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-emerald-900 border border-gold-500/50 flex items-center justify-center text-gold-400">
+              <i class="fas fa-om text-base"></i>
+            </div>
+          </div>
+          <div class="my-3 text-xs space-y-1.5 text-champagne/85 font-marcellus">
+            <p><i class="far fa-clock text-gold-400 w-5"></i> <strong>Time:</strong> 7:00 AM – 9:00 AM</p>
+            <p><i class="fas fa-house-chimney text-gold-400 w-5"></i> <strong>Venue:</strong> At Residence: G-302, Vrundavan Vatika, Vastral, Ahmedabad - 382418</p>
+          </div>
+          <div class="mt-3 pt-3 border-t border-gold-500/20">
+            <a href="https://www.google.com/maps/search/?api=1&query=Vrundavan+Vatika+Vastral+Ahmedabad" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-cinzel text-gold-300 hover:text-gold-100">
+              <i class="fas fa-location-arrow"></i> View on Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Haldi Rasam -->
+        <div class="ornate-card p-6 rounded-2xl border border-gold-500/40 hover:border-gold-300 transition-all">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="inline-block px-3 py-1 bg-gold-500/20 text-gold-400 rounded-full text-[10px] font-cinzel font-semibold tracking-wider">
+                14 FEB 2027 &bull; MORNING
+              </span>
+              <h4 class="font-cinzel text-xl font-bold text-gold-300 mt-2">2. Haldi Rasam</h4>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-emerald-900 border border-gold-500/50 flex items-center justify-center text-gold-400">
+              <i class="fas fa-sun text-base"></i>
+            </div>
+          </div>
+          <div class="my-3 text-xs space-y-1.5 text-champagne/85 font-marcellus">
+            <p><i class="far fa-clock text-gold-400 w-5"></i> <strong>Time:</strong> 9:30 AM – 11:30 AM</p>
+            <p><i class="fas fa-palette text-gold-400 w-5"></i> <strong>Dress Code:</strong> Festive Marigold Yellows</p>
+            <p><i class="fas fa-map-pin text-gold-400 w-5"></i> <strong>Venue:</strong> Vastral Party Plot, Shivalay Park Society Part 1, Pranami Nagar, Vastral, Ahmedabad, Gujarat 382418</p>
+          </div>
+          <div class="mt-3 pt-3 border-t border-gold-500/20">
+            <a href="https://www.google.com/maps/search/?api=1&query=Vastral+Party+Plot+Shivalay+Park+Society+Ahmedabad" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-cinzel text-gold-300 hover:text-gold-100">
+              <i class="fas fa-location-arrow"></i> View on Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Netar Ceremony -->
+        <div class="ornate-card p-6 rounded-2xl border border-gold-500/40 hover:border-gold-300 transition-all">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="inline-block px-3 py-1 bg-gold-500/20 text-gold-400 rounded-full text-[10px] font-cinzel font-semibold tracking-wider">
+                14 FEB 2027 &bull; AFTERNOON
+              </span>
+              <h4 class="font-cinzel text-xl font-bold text-gold-300 mt-2">3. Netar Ceremony</h4>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-emerald-900 border border-gold-500/50 flex items-center justify-center text-gold-400">
+              <i class="fas fa-gift text-base"></i>
+            </div>
+          </div>
+          <div class="my-3 text-xs space-y-1.5 text-champagne/85 font-marcellus">
+            <p><i class="far fa-clock text-gold-400 w-5"></i> <strong>Time:</strong> 2:00 PM – 5:00 PM</p>
+            <p><i class="fas fa-hand-holding-heart text-gold-400 w-5"></i> Traditional presentation of Shagun &amp; heartfelt blessings by relatives and guests according to relationships</p>
+            <p><i class="fas fa-map-pin text-gold-400 w-5"></i> <strong>Venue:</strong> Vastral Party Plot, Shivalay Park Society Part 1, Pranami Nagar, Vastral, Ahmedabad, Gujarat 382418</p>
+          </div>
+          <div class="mt-3 pt-3 border-t border-gold-500/20">
+            <a href="https://www.google.com/maps/search/?api=1&query=Vastral+Party+Plot+Shivalay+Park+Society+Ahmedabad" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-cinzel text-gold-300 hover:text-gold-100">
+              <i class="fas fa-location-arrow"></i> View on Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Pre-Wedding Dinner -->
+        <div class="ornate-card p-6 rounded-2xl border border-gold-500/40 hover:border-gold-300 transition-all">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="inline-block px-3 py-1 bg-gold-500/20 text-gold-400 rounded-full text-[10px] font-cinzel font-semibold tracking-wider">
+                14 FEB 2027 &bull; EVENING
+              </span>
+              <h4 class="font-cinzel text-xl font-bold text-gold-300 mt-2">4. Pre-Wedding Dinner</h4>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-emerald-900 border border-gold-500/50 flex items-center justify-center text-gold-400">
+              <i class="fas fa-utensils text-base"></i>
+            </div>
+          </div>
+          <div class="my-3 text-xs space-y-1.5 text-champagne/85 font-marcellus">
+            <p><i class="far fa-clock text-gold-400 w-5"></i> <strong>Time:</strong> 7:00 PM – 9:00 PM</p>
+            <p><i class="fas fa-music text-gold-400 w-5"></i> Celebratory family dinner, music &amp; festivities</p>
+            <p><i class="fas fa-map-pin text-gold-400 w-5"></i> <strong>Venue:</strong> Vastral Party Plot, Shivalay Park Society Part 1, Pranami Nagar, Vastral, Ahmedabad, Gujarat 382418</p>
+          </div>
+          <div class="mt-3 pt-3 border-t border-gold-500/20">
+            <a href="https://www.google.com/maps/search/?api=1&query=Vastral+Party+Plot+Shivalay+Park+Society+Ahmedabad" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-cinzel text-gold-300 hover:text-gold-100">
+              <i class="fas fa-location-arrow"></i> View on Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Bandoli / Sangeet (Updated Name) -->
+        <div class="ornate-card p-6 rounded-2xl border border-gold-500/40 hover:border-gold-300 transition-all">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="inline-block px-3 py-1 bg-gold-500/20 text-gold-400 rounded-full text-[10px] font-cinzel font-semibold tracking-wider">
+                14 FEB 2027 &bull; NIGHT
+              </span>
+              <h4 class="font-cinzel text-xl font-bold text-gold-300 mt-2">5. Bandoli / Sangeet</h4>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-emerald-900 border border-gold-500/50 flex items-center justify-center text-gold-400">
+              <i class="fas fa-drum text-base"></i>
+            </div>
+          </div>
+          <div class="my-3 text-xs space-y-1.5 text-champagne/85 font-marcellus">
+            <p><i class="far fa-clock text-gold-400 w-5"></i> <strong>Time:</strong> 9:30 PM – Midnight</p>
+            <p><i class="fas fa-route text-gold-400 w-5"></i> Festive procession with celebratory dhol, vibrant sangeet &amp; garba beats</p>
+            <p><i class="fas fa-house-chimney text-gold-400 w-5"></i> <strong>Starting Point:</strong> G-302, Vrundavan Vatika, Vastral</p>
+          </div>
+          <div class="mt-3 pt-3 border-t border-gold-500/20">
+            <a href="https://www.google.com/maps/search/?api=1&query=Vrundavan+Vatika+Vastral+Ahmedabad" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-cinzel text-gold-300 hover:text-gold-100">
+              <i class="fas fa-location-arrow"></i> View on Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. Grand Wedding Day (Devashray Farm) -->
+        <div class="ornate-card p-6 rounded-2xl border-2 border-gold-400 bg-gradient-to-br from-emerald-900 to-emerald-950 hover:border-gold-300 transition-all gold-glow">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="inline-block px-3 py-1 bg-gold-500 text-emerald-950 font-cinzel font-bold rounded-full text-[10px] tracking-wider">
+                15 FEB 2027 &bull; THE GRAND WEDDING
+              </span>
+              <h4 class="font-cinzel text-xl font-bold text-gold-300 mt-2">6. The Grand Wedding &amp; Hastamelap</h4>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-300">
+              <i class="fas fa-fire-flame-curved text-base"></i>
+            </div>
+          </div>
+          <div class="my-3 text-xs space-y-1.5 text-champagne/95 font-marcellus">
+            <p><i class="far fa-clock text-gold-400 w-5"></i> <strong>Time:</strong> Morning Wedding (Auspicious Lagna &amp; Pheras)</p>
+            <p><i class="fas fa-ring text-gold-400 w-5"></i> Jaan Aagman, Varmala, Hastamelap &amp; Mangal Pheras</p>
+            <p><i class="fas fa-landmark text-gold-400 w-5"></i> <strong>Grand Venue:</strong> Devashray Farm, Ahmedabad, Gujarat</p>
+            <p><i class="fas fa-square-parking text-gold-400 w-5"></i> Valet parking &amp; guest assistance available at the main gate</p>
+          </div>
+          <div class="mt-3 pt-3 border-t border-gold-500/20">
+            <a href="https://www.google.com/maps/search/?api=1&query=Devashray+Farm+Ahmedabad" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-cinzel font-bold text-gold-300 hover:text-gold-100">
+              <i class="fas fa-location-arrow text-gold-400"></i> Open in Google Maps
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- THE NAGAR FAMILY BLESSINGS & INTRODUCTIONS -->
+    <section class="my-16 ornate-card p-6 sm:p-10 rounded-3xl border border-gold-500/60">
+      <div class="corner-ornament c-tl"></div>
+      <div class="corner-ornament c-tr"></div>
+      <div class="corner-ornament c-bl"></div>
+      <div class="corner-ornament c-br"></div>
+
+      <div class="text-center mb-8">
+        <p class="text-xs uppercase font-cinzel tracking-widest text-gold-400">Heartfelt Compliments &amp; Snehabhilashi</p>
+        <h3 class="font-decorative text-3xl sm:text-4xl text-gold-200">The Nagar Family</h3>
+        <p class="text-xs text-champagne/75 font-marcellus max-w-lg mx-auto mt-2 italic">
+          "United in tradition, bound by endless warmth, and blessing our dearest Himanshu on his milestone celebration."
+        </p>
+      </div>
+
+      <!-- Grandfather: The Root & Guiding Light -->
+      <div class="text-center max-w-xl mx-auto p-6 rounded-2xl bg-emerald-950/80 border border-gold-500/40 mb-8">
+        <span class="inline-block px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-300 text-[10px] font-cinzel uppercase tracking-widest mb-2">
+          The Root &amp; Guiding Light
+        </span>
+        <h4 class="font-cinzel text-xl sm:text-2xl font-bold text-gold-200">Shri Parshuram Maganlal Nagar</h4>
+        <div class="h-px w-20 bg-gold-500/30 mx-auto my-2.5"></div>
+        <p class="text-xs text-champagne/85 font-cormorant italic">
+          With eternal and sacred blessings in loving memory of <br>
+          <strong class="text-gold-300 font-cinzel">Late Smt. Saraswati Parshuram Nagar</strong>
+        </p>
+      </div>
+
+      <!-- Elders & Pillars -->
+      <div class="mb-10">
+        <p class="text-center text-xs font-cinzel uppercase tracking-widest text-gold-400 mb-4 font-bold">
+          Pillars of Guidance, Strength &amp; Warmth
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div class="p-5 bg-emerald-900/90 rounded-xl border-2 border-gold-400 shadow-lg flex flex-col justify-between">
+            <h5 class="font-cinzel text-base font-bold text-gold-300">Vikram &amp; Veena Nagar</h5>
+            <p class="text-xs text-gold-400 font-cinzel mt-1 uppercase font-semibold">Proud Parents of the Groom</p>
+            <p class="text-xs text-champagne/85 font-cormorant italic mt-3">Welcoming you with folded hands, warm gratitude, and overflowing love.</p>
+          </div>
+          <div class="p-5 bg-emerald-900/60 rounded-xl border border-gold-500/30 flex flex-col justify-between">
+            <h5 class="font-cinzel text-base font-bold text-gold-200">Uttam &amp; Tara Nagar</h5>
+            <p class="text-xs text-gold-400/90 font-cinzel mt-1 uppercase">Pillars of Strength &amp; Blessing</p>
+            <p class="text-xs text-champagne/75 font-cormorant italic mt-3">Leading the parivar with reassurance, dignity, and grace.</p>
+          </div>
+          <div class="p-5 bg-emerald-900/60 rounded-xl border border-gold-500/30 flex flex-col justify-between">
+            <h5 class="font-cinzel text-base font-bold text-gold-200">Prakash &amp; Anita Nagar</h5>
+            <p class="text-xs text-gold-400/90 font-cinzel mt-1 uppercase">Warmth &amp; Joy of the Clan</p>
+            <p class="text-xs text-champagne/75 font-cormorant italic mt-3">Enlivening our home with radiant energy, laughter, and affection.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cousins Chronology & Proper Introduction of Master Mahir -->
+      <div class="p-6 bg-emerald-950/90 rounded-2xl border border-gold-500/40">
+        <div class="text-center mb-5">
+          <span class="text-xs font-cinzel uppercase tracking-widest text-gold-400 font-bold block">
+            Our Next Generation &bull; The Groom's Cherished Tribe
+          </span>
+        </div>
+
+        <div class="space-y-3 max-w-2xl mx-auto text-left">
+          <!-- 1. Dr. Divya Nagar & Chirag Nagar -->
+          <div class="p-3.5 bg-emerald-900/50 rounded-xl border-l-4 border-gold-400 border-r border-t border-b border-gold-500/30">
+            <p class="font-cinzel text-sm font-bold text-gold-300">
+              1. Dr. Divya Nagar &amp; Chirag Nagar
+            </p>
+            <p class="text-xs text-champagne/80 font-cormorant italic">
+              Eldest sister &bull; Radiating healing, warmth &amp; loving blessings
+            </p>
+          </div>
+
+          <!-- 2. Himanshu Nagar (Our Groom) -->
+          <div class="p-3.5 bg-emerald-800/80 rounded-xl border-l-4 border-gold-300 border-r border-t border-b border-gold-400/80 gold-glow">
+            <div class="flex items-center justify-between">
+              <p class="font-cinzel text-sm font-bold text-gold-200">2. Himanshu Nagar</p>
+              <span class="text-[10px] font-cinzel bg-gold-500 text-emerald-950 font-bold px-2 py-0.5 rounded-full">OUR GROOM</span>
+            </div>
+            <p class="text-xs text-champagne font-cormorant italic">
+              The dependable pillar of strength and pride of the Nagar Parivar ✨
+            </p>
+          </div>
+
+          <!-- 3. Dr. Chirag Nagar -->
+          <div class="p-3.5 bg-emerald-900/50 rounded-xl border-l-4 border-gold-400 border-r border-t border-b border-gold-500/30">
+            <p class="font-cinzel text-sm font-bold text-gold-300">3. Dr. Chirag Nagar</p>
+            <p class="text-xs text-champagne/80 font-cormorant italic">
+              Devoted brother &amp; healer &bull; Anchor of wisdom and support
+            </p>
+          </div>
+
+          <!-- 4. Shruti Nagar -->
+          <div class="p-3.5 bg-emerald-900/50 rounded-xl border-l-4 border-gold-400 border-r border-t border-b border-gold-500/30">
+            <p class="font-cinzel text-sm font-bold text-gold-300">4. Shruti Nagar</p>
+            <p class="text-xs text-champagne/80 font-cormorant italic">
+              Dearest sister &bull; The heart, laughter &amp; joy of our home
+            </p>
+          </div>
+
+          <!-- 5. Kushal Nagar -->
+          <div class="p-3.5 bg-emerald-900/50 rounded-xl border-l-4 border-gold-400 border-r border-t border-b border-gold-500/30">
+            <p class="font-cinzel text-sm font-bold text-gold-300">5. Kushal Nagar</p>
+            <p class="text-xs text-champagne/80 font-cormorant italic">
+              The youngest brother &bull; The vibrant spark, spreading laughter and celebrations
+            </p>
+          </div>
+
+          <!-- Proper Introduction of Little Master Mahir -->
+          <div class="p-3.5 bg-emerald-900/70 rounded-xl border-l-4 border-gold-300 border-r border-t border-b border-gold-500/40 flex items-center justify-between gap-3 mt-4">
+            <div>
+              <p class="font-cinzel text-sm font-bold text-gold-200">
+                6. Mahir Nagar
+              </p>
+              <p class="text-xs text-champagne/90 font-cormorant italic">
+                Son of Dr. Divya &amp; Chirag Nagar &bull; The joyous little sunshine of the entire Nagar Parivar
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER WITH BLESSINGS QUOTE -->
+    <footer class="text-center py-10 text-xs font-cinzel text-gold-400/80 border-t border-gold-500/25">
+      <p class="font-decorative text-3xl text-gold-300 mb-1">Himanshu &bull; Jagriti</p>
+      <p class="tracking-widest">#HimanshuKiJagriti &bull; February 2027 &bull; Ahmedabad</p>
+      <p class="text-[11px] text-champagne/60 mt-3 font-marcellus max-w-md mx-auto">
+        "Your graceful presence and sincere blessings are the greatest gift you can shower upon our family."
+      </p>
+      <p class="text-[10px] text-champagne/40 mt-3 font-marcellus">
+        With Best Compliments: The Nagar Family (Parshuramji, Vikram-Veena, Uttam-Tara, Prakash-Anita &amp; The Loving Tribe)
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Ensure window is at top on fresh load
+      window.scrollTo(0, 0);
+
+      /* 1. Petal Shower Animation */
+      const petalLayer = document.getElementById('petalLayer');
+      const petalTypes = ['🌸', '🌺', '✨', '🌼'];
+      for (let i = 0; i < 15; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal text-sm sm:text-base opacity-75';
+        petal.innerText = petalTypes[Math.floor(Math.random() * petalTypes.length)];
+        petal.style.left = `${Math.random() * 95}vw`;
+        petal.style.animationDuration = `${9 + Math.random() * 8}s`;
+        petal.style.animationDelay = `${Math.random() * 6}s`;
+        petalLayer.appendChild(petal);
+      }
+
+      /* 2. DUAL-ENGINE AUDIO SYSTEM */
+      const weddingAudio = document.getElementById('weddingShehnaiAudio');
+      const musicController = document.getElementById('musicController');
+      const discGraphic = document.getElementById('discGraphic');
+      const musicStatusText = document.getElementById('musicStatusText');
+      const soundIcon = document.getElementById('soundIcon');
+
+      let audioCtx = null;
+      let synthInterval = null;
+      let isSynthActive = false;
+      let isMusicPlaying = false;
+
+      function startSynthesizer() {
+        if (isSynthActive) return;
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContextClass();
+
+          function spawnDrone(freq, gainAmount) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const filter = audioCtx.createBiquadFilter();
+
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(gainAmount, audioCtx.currentTime);
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+          }
+
+          spawnDrone(146.83, 0.035);
+          spawnDrone(220.00, 0.025);
+
+          const notes = [293.66, 329.63, 369.99, 440.00, 493.88, 587.33, 440.00, 369.99];
+          let step = 0;
+
+          synthInterval = setInterval(() => {
+            if (!audioCtx || audioCtx.state === 'suspended' || !isMusicPlaying) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'triangle';
+            const f = notes[step % notes.length];
+            osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(f * 1.025, audioCtx.currentTime + 0.35);
+
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.065, audioCtx.currentTime + 0.15);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.85);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.9);
+            step++;
+          }, 1000);
+
+          isSynthActive = true;
+        } catch (e) {
+          console.warn('Synthesizer unavailable', e);
+        }
+      }
+
+      function enableMusic() {
+        isMusicPlaying = true;
+        weddingAudio.volume = 0.85;
+
+        const playPromise = weddingAudio.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              discGraphic.classList.add('animate-spin-slow');
+              musicStatusText.textContent = 'Music On';
+              soundIcon.className = 'fas fa-volume-up text-gold-400 text-sm ml-1';
+            })
+            .catch(() => {
+              startSynthesizer();
+              discGraphic.classList.add('animate-spin-slow');
+              musicStatusText.textContent = 'Music On';
+              soundIcon.className = 'fas fa-volume-up text-gold-400 text-sm ml-1';
+            });
+        }
+      }
+
+      function disableMusic() {
+        isMusicPlaying = false;
+        weddingAudio.pause();
+        if (audioCtx && audioCtx.state === 'running') {
+          audioCtx.suspend();
+        }
+        discGraphic.classList.remove('animate-spin-slow');
+        musicStatusText.textContent = 'Music Muted';
+        soundIcon.className = 'fas fa-volume-mute text-gold-400/60 text-sm ml-1';
+      }
+
+      musicController.addEventListener('click', () => {
+        if (isMusicPlaying) {
+          disableMusic();
+        } else {
+          if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+          enableMusic();
+        }
+      });
+
+      // GRAND PALACE DOORS OPENING HANDLER
+      const entranceModal = document.getElementById('entranceModal');
+      const enterCelebrationBtn = document.getElementById('enterCelebrationBtn');
+      const doorPlaque = document.getElementById('doorPlaque');
+      const mainPage = document.getElementById('mainPage');
+
+      enterCelebrationBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+        enableMusic();
+
+        doorPlaque.style.opacity = '0';
+        doorPlaque.style.transform = 'scale(0.9)';
+
+        setTimeout(() => {
+          entranceModal.classList.add('doors-open');
+        }, 300);
+
+        setTimeout(() => {
+          entranceModal.style.display = 'none';
+          mainPage.classList.remove('opacity-0');
+          window.scrollTo(0, 0);
+
+          confetti({
+            particleCount: 90,
+            spread: 90,
+            origin: { y: 0.35 },
+            colors: ['#d4af37', '#f6df8d', '#11523f', '#fff9e5']
+          });
+        }, 1300);
+      });
+
+      /* 3. INTERACTIVE GOLD WAX SEAL / SCRATCH CARD */
+      const canvas = document.getElementById('scratchCanvas');
+      const ctx = canvas.getContext('2d');
+      const scratchStatusMsg = document.getElementById('scratchStatusMsg');
+      let isScratching = false;
+      let cardRevealed = false;
+
+      function renderGoldSurface() {
+        const w = canvas.width;
+        const h = canvas.height;
+
+        const grad = ctx.createLinearGradient(0, 0, w, h);
+        grad.addColorStop(0, '#b8860b');
+        grad.addColorStop(0.35, '#f6df8d');
+        grad.addColorStop(0.7, '#d4af37');
+        grad.addColorStop(1, '#8c6207');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.fillStyle = '#021510';
+        ctx.font = 'bold 14px "Cinzel", serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('✨ SCRATCH WITH FINGER ✨', w / 2, h / 2 - 8);
+        ctx.font = '11px "Marcellus", serif';
+        ctx.fillText('REVEAL THE WEDDING DATE', w / 2, h / 2 + 16);
+      }
+      renderGoldSurface();
+
+      function getCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        return {
+          x: (clientX - rect.left) * scaleX,
+          y: (clientY - rect.top) * scaleY
+        };
+      }
+
+      function scratchAt(e) {
+        if (!isScratching || cardRevealed) return;
+        const p = getCoords(e);
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 22, 0, Math.PI * 2);
+        ctx.fill();
+        evaluateScratch();
+      }
+
+      function evaluateScratch() {
+        if (cardRevealed) return;
+        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        let transparent = 0;
+        const step = 16;
+        for (let i = 3; i < pixels.length; i += step) {
+          if (pixels[i] === 0) transparent++;
+        }
+        const pct = (transparent / (pixels.length / step)) * 100;
+
+        if (pct > 35) {
+          cardRevealed = true;
+          canvas.style.transition = 'opacity 0.6s ease';
+          canvas.style.opacity = '0';
+          setTimeout(() => { canvas.style.display = 'none'; }, 600);
+          scratchStatusMsg.innerHTML = '<span class="text-gold-200 font-bold"><i class="fas fa-check-circle text-gold-400 mr-1"></i> Date Revealed: 15th February 2027!</span>';
+          confetti({
+            particleCount: 110,
+            spread: 90,
+            origin: { y: 0.55 },
+            colors: ['#d4af37', '#ffffff', '#eec956']
+          });
+        }
+      }
+
+      canvas.addEventListener('mousedown', (e) => { isScratching = true; scratchAt(e); });
+      window.addEventListener('mouseup', () => { isScratching = false; });
+      canvas.addEventListener('mousemove', scratchAt);
+
+      canvas.addEventListener('touchstart', (e) => { isScratching = true; scratchAt(e); e.preventDefault(); }, { passive: false });
+      canvas.addEventListener('touchmove', (e) => { scratchAt(e); e.preventDefault(); }, { passive: false });
+      window.addEventListener('touchend', () => { isScratching = false; });
+
+      /* 4. REAL-TIME COUNTDOWN TO 15 FEBRUARY 2027 09:00 IST */
+      const weddingDate = new Date("February 15, 2027 09:00:00 GMT+0530").getTime();
+
+      function refreshCountdown() {
+        const now = new Date().getTime();
+        const dist = weddingDate - now;
+
+        if (dist > 0) {
+          const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+          const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+          const s = Math.floor((dist % (1000 * 60)) / 1000);
+
+          document.getElementById('daysVal').innerText = String(d).padStart(2, '0');
+          document.getElementById('hoursVal').innerText = String(h).padStart(2, '0');
+          document.getElementById('minsVal').innerText = String(m).padStart(2, '0');
+          document.getElementById('secsVal').innerText = String(s).padStart(2, '0');
+        } else {
+          document.getElementById('daysVal').innerText = '00';
+          document.getElementById('hoursVal').innerText = '00';
+          document.getElementById('minsVal').innerText = '00';
+          document.getElementById('secsVal').innerText = '00';
+        }
+      }
+      refreshCountdown();
+      setInterval(refreshCountdown, 1000);
+
+      /* 5. TOUCH & MOUSE SWIPEABLE PHOTO CAROUSEL LOGIC */
+      const track = document.getElementById('carouselTrack');
+      const slides = track.children;
+      const totalSlides = slides.length;
+      const prevBtn = document.getElementById('carouselPrevBtn');
+      const nextBtn = document.getElementById('carouselNextBtn');
+      const dots = document.querySelectorAll('.dot-btn');
+      const wrapper = document.getElementById('carouselWrapper');
+
+      let currentSlide = 0;
+      let startX = 0;
+      let currentX = 0;
+      let isDragging = false;
+
+      function updateCarousel(index) {
+        currentSlide = (index + totalSlides) % totalSlides;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        dots.forEach((dot, idx) => {
+          if (idx === currentSlide) {
+            dot.classList.add('bg-gold-400', 'scale-125');
+            dot.classList.remove('bg-gold-500/40');
+          } else {
+            dot.classList.remove('bg-gold-400', 'scale-125');
+            dot.classList.add('bg-gold-500/40');
+          }
+        });
+      }
+
+      nextBtn.addEventListener('click', () => updateCarousel(currentSlide + 1));
+      prevBtn.addEventListener('click', () => updateCarousel(currentSlide - 1));
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+          const idx = parseInt(e.target.getAttribute('data-index'));
+          updateCarousel(idx);
+        });
+      });
+
+      // Touch Swipe Gestures for Mobile
+      wrapper.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        currentX = startX;
+        isDragging = true;
+      }, { passive: true });
+
+      wrapper.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+      }, { passive: true });
+
+      wrapper.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        const diffX = startX - currentX;
+        if (diffX > 45) {
+          updateCarousel(currentSlide + 1);
+        } else if (diffX < -45) {
+          updateCarousel(currentSlide - 1);
+        }
+      });
+
+      // Mouse Drag Support for Desktop
+      wrapper.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        currentX = startX;
+        isDragging = true;
+        wrapper.classList.remove('cursor-grab');
+        wrapper.classList.add('cursor-grabbing');
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        currentX = e.clientX;
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        wrapper.classList.add('cursor-grab');
+        wrapper.classList.remove('cursor-grabbing');
+        const diffX = startX - currentX;
+        if (diffX > 50) {
+          updateCarousel(currentSlide + 1);
+        } else if (diffX < -50) {
+          updateCarousel(currentSlide - 1);
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
